@@ -2,9 +2,8 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 
-from .serializers import RegisterSerializer, LoginSerializer, ProfileSerializer
-from .models import Profile
-
+from .serializers import *
+from .models import *
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -52,3 +51,4 @@ class ProfileView(generics.GenericAPIView):
         profile = Profile.objects.get(user=request.user)
         serializer = self.get_serializer(profile)
         return Response(serializer.data)
+
